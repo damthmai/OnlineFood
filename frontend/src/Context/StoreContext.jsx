@@ -18,6 +18,9 @@ const StoreContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+    if (token) {
+      
+    }
   };
 
   //remove items from the cart
