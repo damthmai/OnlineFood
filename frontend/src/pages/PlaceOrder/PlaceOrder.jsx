@@ -1,12 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../Context/StoreContext";
 
 const PlaceOrder = () => {
 
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount ,token,food_list,cartItems,url} = useContext(StoreContext);
 
+  const [data,setData] = useState({
+    firstName:"",
+    lastName:"",
+    email:"",
+    street:"",
+    city:"",
+    state:"",
+    zipcode:"",
+    country:"",
+    phone:""
 
+  })
+
+  const onChangeHandler = (event) =>{
+    const name = event.target.name;
+    const value = event.target.value;
+    setData(data=>({...data,[name]:value}))
+  }
 
   return (
     <div>
@@ -15,21 +32,21 @@ const PlaceOrder = () => {
           <p className="title">Delivery Information</p>
 
           <div className="multi-fields">
-            <input type="text" name="" id="" placeholder="First Name" />
-            <input type="text" name="" id="" placeholder="Last Name" />
+            <input type="text" name="firstName" onChange={onChangeHandler} value={data.firstName} id="" placeholder="First Name" />
+            <input type="text" name="lastName" onChange={onChangeHandler} value={data.lastName} id="" placeholder="Last Name" />
           </div>
 
-          <input type="text" name="" id="" placeholder="Email Address" />
-          <input type="text" name="" id="" placeholder="Street" />
+          <input type="text" name="email" onChange={onChangeHandler} value={data.email} id="" placeholder="Email Address" />
+          <input type="text" name="street" onChange={onChangeHandler} value={data.street} id="" placeholder="Street" />
 
           <div className="multi-fields">
-            <input type="text" name="" id="" placeholder="City" />
-            <input type="text" name="" id="" placeholder="State" />
+            <input type="text" name="city" onChange={onChangeHandler} value={data.city} id="" placeholder="City" />
+            <input type="text" name="state" onChange={onChangeHandler} value={data.state} id="" placeholder="State" />
           </div>
 
           <div className="multi-fields">
-            <input type="text" name="" id="" placeholder="Zip Code" />
-            <input type="text" name="" id="" placeholder="Country" />
+            <input type="text" name="zipcode" onChange={onChangeHandler} value={data.zipcode} id="" placeholder="Zip Code" />
+            <input type="text" name="country" onChange={onChangeHandler} value={data.country} id="" placeholder="Country" />
           </div>
 
           <input type="text" name="" id="" placeholder="Phone Number" />
