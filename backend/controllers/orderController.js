@@ -30,35 +30,35 @@ const placeOrder = async (req, res) => {
                 unit_amount: item.price * 100
 
             },
-            quantity:item.quantity
+            quantity: item.quantity
         }))
 
         line_items.push({
-            price_data:{
-                currency:"dollar",
-                product_data:{
-                    name:"Delivery Charges"
+            price_data: {
+                currency: "dollar",
+                product_data: {
+                    name: "Delivery Charges"
                 },
-                unit_amount:2*100
+                unit_amount: 2 * 100
             },
-            quantity:1
+            quantity: 1
         })
 
         const session = await stripe.checkout.sessions.create({
-            line_items:line_items,
+            line_items: line_items,
             mode: 'payment',
-            success_url:` ${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-            cancel_url:` ${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
+            success_url: ` ${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
+            cancel_url: ` ${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
 
         })
 
-        res.json({success:true,session_url:session.url})
+        res.json({ success: true, session_url: session.url })
 
-        } catch (error) {
-            console.log(error);
-            res.json({success:false,message:"Error"})
-        }
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
     }
+}
 
 
 export { placeOrder } 
