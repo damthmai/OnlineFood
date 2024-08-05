@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState , useNavigate} from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios";
@@ -50,6 +50,14 @@ const PlaceOrder = () => {
       alert("Error")
     }
   }
+
+  const navigate = useNavigate();
+  
+  useEffect(()=>{
+    if (!token) {
+      navigate('/cart')
+    }
+  },[token])
 
   return (
     <div>
