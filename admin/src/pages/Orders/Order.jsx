@@ -69,7 +69,7 @@ const Order = () => {
               </p>
             </div>
             <p>Items : {order.items.length}</p>
-            <p>${order.amount}</p>
+            <p>₹{order.amount}</p>
             <select name="" id="" onChange={(event)=>{statusHandler(event,order._id)}} value={order.status}>
               
                 <option value="Food Processing">Food Processing</option>
